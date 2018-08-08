@@ -79,7 +79,7 @@ export default class App extends Vue {
         this.uploadProgress[file.name] = { state: 'done', percentage: 100 };
         resolve(req.response);
       });
-      req.upload.addEventListener('error', (event: ErrorEvent) => {
+      req.upload.addEventListener('error', (event: any) => {
         this.uploadProgress[file.name] = { state: 'error', percentage: 0 };
         this.uploadProgress = { ...this.uploadProgress };
         reject(req.response);
