@@ -4,7 +4,7 @@
             {{ filename }}
         </div>
         <div class="progress">
-            <Progress :percentage="percentage" :radius="64" :state="uploadState" />
+            <Progress :percentage="percentage" :state="uploadState" />
         </div>
     </div>
 </template>
@@ -12,6 +12,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import Progress from './Progress.vue';
+
 @Component({
   components: {
     Progress

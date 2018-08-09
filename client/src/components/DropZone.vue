@@ -8,7 +8,7 @@
       >
     <div>Add files</div>
     <input ref="fileInput" class="file-input" type="file" multiple v-on:change="onFileChanged" />
-</div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -16,8 +16,6 @@ import { Component, Prop, Vue, Emit } from 'vue-property-decorator';
 
 @Component
 export default class DropZone extends Vue {
-  @Prop() private msg!: string;
-
   @Prop({ default: true })
   private enabled!: boolean;
 

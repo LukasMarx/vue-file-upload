@@ -13,14 +13,18 @@
                   :uploadState="uploadProgress[file.name] ? uploadProgress[file.name].state : 'idle'" 
                   :percentage="uploadProgress[file.name] ?  uploadProgress[file.name].percentage : 0" />
         </div>
-        <button v-if="!successfullUploaded" v-on:click="uploadFiles" :disabled="uploading">Upload</button>
-        <button v-if="successfullUploaded" v-on:click="clearFileList">Clear</button>
+        <button v-if="!successfullUploaded"
+              v-on:click="uploadFiles" 
+              :disabled="uploading">
+              Upload
+        </button>
+        <button v-if="successfullUploaded"
+              v-on:click="clearFileList">
+              Clear
+        </button>
       </div>
-
     </div>
-
   </div>
-
 </template>
 
 <script lang="ts">
@@ -36,9 +40,9 @@ import ListItem from './components/ListItem.vue';
 })
 export default class App extends Vue {
   private files: File[] = [];
-  private uploading = false;
-  public successfullUploaded = false;
   private uploadProgress: { [key: string]: { state: string; percentage: number } } = {};
+  private uploading = false;
+  private successfullUploaded = false;
 
   onFilesAdded(files: File[]) {
     this.files = [...files, ...this.files];
@@ -68,9 +72,7 @@ export default class App extends Vue {
       const req = new XMLHttpRequest();
 
       req.upload.addEventListener('progress', (event: ProgressEvent) => {
-        console.log({ state: 'pending', percentage: event.loaded / event.total * 100 });
         if (event.lengthComputable) {
-          console.log({ state: 'pending', percentage: event.loaded / event.total * 100 });
           this.uploadProgress[file.name] = { state: 'pending', percentage: event.loaded / event.total * 100 };
           this.uploadProgress = { ...this.uploadProgress };
         }
